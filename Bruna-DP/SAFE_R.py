@@ -47,7 +47,7 @@ class SafeApp(ctk.CTk):
         
         # Logo e título
         title_frame = ctk.CTkFrame(main_frame, fg_color="transparent")
-        title_frame.pack(fill="x", pady=(0, 10))
+        title_frame.pack(pady=(10, 20))
         
         
         
@@ -57,17 +57,19 @@ class SafeApp(ctk.CTk):
             img_path = os.path.join(os.path.dirname(__file__), "safeImg.png")
             # Carregar e redimensionar a imagem
             img = Image.open(img_path)
-            img = img.resize((60, 60), Image.Resampling.LANCZOS)  # Redimensionar para 40x40 pixels
-            img_tk = ImageTk.PhotoImage(img)
+            img = img.resize((50, 50), Image.LANCZOS)  # Redimensionar para 40x40 pixels
+            icone = ctk.CTkImage(light_image=img, dark_image=img, size=(50, 50))
+            
+            # img_tk = ImageTk.PhotoImage(img)
             # Adicionar a imagem como um CTkLabel
-            img_label = ctk.CTkLabel(title_frame, image=img_tk, text="")
-            img_label.image = img_tk  # Manter referência para evitar garbage collection
-            img_label.pack(pady=(5, 5))
+            img_label = ctk.CTkLabel(title_frame, image=icone, text="")
+            # img_label.image = img_tk  # Manter referência para evitar garbage collection
+            img_label.pack(side="left",pady=(0, 10))
         except Exception as e:
             print(f"Erro ao carregar a imagem PNG: {e}")
         
-        logo_label = ctk.CTkLabel(title_frame, text="SAFE R", font=ctk.CTkFont(size=28, weight="bold"))
-        logo_label.pack(pady=(5, 5), padx=(0, 10))
+        logo_label = ctk.CTkLabel(title_frame, text="SAFE R", font=("Helvetica", 20, "bold"))
+        logo_label.pack(side="left")
         # subtitle = ctk.CTkLabel(title_frame, text="Sistema de Alocação de Elementos", 
         #                         font=ctk.CTkFont(size=14))
         # subtitle.pack(pady=(0, 5))
